@@ -1,5 +1,6 @@
 package ExternalConfiguration.ExternalConfig;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -13,16 +14,30 @@ import com.netflix.archaius.readers.URLConfigReader;
 
 public class LogConfigurationController {
 
-	
-	public DefaultLayeredConfig config = new DefaultLayeredConfig();
-	public DefaultPropertyFactory factory = new DefaultPropertyFactory(config);
-	
-	
+	public DefaultPropertyFactory factory = null;
+	public DefaultLayeredConfig config = null;
+	public PollingDynamicConfig pollingDynamicConfig = null;
 
-	public LogConfigurationController(String sourceFilePath) {	
-		config.addConfig(Layers.REMOTE, new PollingDynamicConfig(
-				new URLConfigReader(sourceFilePath), 
-				new FixedPollingStrategy(1, TimeUnit.SECONDS)));
+	public LogConfigurationController(String logFileSourcePath) {
+		config = new DefaultLayeredConfig();
+		factory = new DefaultPropertyFactory(config);
+		
+		pollingDynamicConfig = new  PollingDynamicConfig(
+				new URLConfigReader(logFileSourcePath), 
+				new FixedPollingStrategy(1, TimeUnit.SECONDS));
+		config.addConfig(Layers.REMOTE,pollingDynamicConfig);
+	}
+	
+	public Map<String, Object> getAllProperties() {
+		Map<String, Object> propertyMap = new LinkedHashMap<String, Object>();
+
+		Iterator<String> keys = pollingDynamicConfig.getKeys();
+				 while (keys.hasNext()) {
+					 String key = keys.next();
+					 propertyMap.put(key,  pollingDynamicConfig.getRawProperty(key));
+				 }
+				 
+		 return propertyMap;
 	}
 	
 	public <T> String getPropertyValue(String Key, Class<T> type) {	
