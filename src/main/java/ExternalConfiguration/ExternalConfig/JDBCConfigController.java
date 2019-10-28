@@ -18,6 +18,7 @@ public class JDBCConfigController {
 
 	
 	 DynamicConfiguration configuration = null;
+	 
 	
 	public  JDBCConfigController(DataSource dataSource, String query,
 			String keyColumnName, String valueColumnName) {
