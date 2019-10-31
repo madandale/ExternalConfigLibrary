@@ -1,9 +1,13 @@
 package ExternalConfiguration.ExternalConfig;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.omg.CORBA.Environment;
 
 import com.netflix.archaius.DefaultPropertyFactory;
 import com.netflix.archaius.Layers;
@@ -18,13 +22,29 @@ public class LogConfigurationController {
 	public DefaultLayeredConfig config = null;
 	public PollingDynamicConfig pollingDynamicConfig = null;
 
-	public LogConfigurationController(String logFileSourcePath) {
+	public LogConfigurationController(long pollingTimeInterval)  {
+
+		String	propertyDir = "file://"+ System.getProperty("user.home") + File.separator + "application.properties";
+
+		//		String operSys = System.getProperty("os.name").toLowerCase();
+//       if (operSys.contains("nix") || operSys.contains("nux")
+//                || operSys.contains("aix")) {
+//        	homeDir = System.getProperty("user.home");
+//        } else if (operSys.contains("mac")) {
+//        	homeDir = System.getProperty("user.home");
+//        } else {
+//        	homeDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+//        }
+//        
+
+		long interval = (pollingTimeInterval ==0)?1:pollingTimeInterval;
+		
 		config = new DefaultLayeredConfig();
 		factory = new DefaultPropertyFactory(config);
 		
 		pollingDynamicConfig = new  PollingDynamicConfig(
-				new URLConfigReader(logFileSourcePath), 
-				new FixedPollingStrategy(1, TimeUnit.SECONDS));
+				new URLConfigReader(propertyDir), 
+				new FixedPollingStrategy(interval, TimeUnit.SECONDS));
 		config.addConfig(Layers.REMOTE,pollingDynamicConfig);
 	}
 	
@@ -53,4 +73,9 @@ public class LogConfigurationController {
 		return properties;
 
 	}
+	
+	  public enum OS {
+          WINDOWS, LINUX, MAC, SOLARIS
+      };// Operating systems.
+
 }

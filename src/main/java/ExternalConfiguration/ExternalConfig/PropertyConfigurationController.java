@@ -1,5 +1,6 @@
 package ExternalConfiguration.ExternalConfig;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -23,13 +24,19 @@ public class PropertyConfigurationController {
 	public DefaultLayeredConfig config = null;
 	public PollingDynamicConfig pollingDynamicConfig = null;
 
-	public PropertyConfigurationController(String propertyFilePath) {
+	public PropertyConfigurationController(long pollingTimeInterval) {
+		
+		String	propertyDir = "file://"+ System.getProperty("user.home") + File.separator + "application.properties";
+   
+
+		long interval = (pollingTimeInterval ==0)?1:pollingTimeInterval;
+		
 		config = new DefaultLayeredConfig();
 		factory = new DefaultPropertyFactory(config);
 		
 		pollingDynamicConfig = new  PollingDynamicConfig(
-				new URLConfigReader(propertyFilePath), 
-				new FixedPollingStrategy(1, TimeUnit.SECONDS));
+				new URLConfigReader(propertyDir), 
+				new FixedPollingStrategy(interval, TimeUnit.SECONDS));
 		config.addConfig(Layers.REMOTE,pollingDynamicConfig);
 		
 				

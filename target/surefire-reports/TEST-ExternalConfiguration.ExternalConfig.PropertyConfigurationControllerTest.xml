@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="ExternalConfiguration.ExternalConfig.PropertyConfigurationControllerTest" time="0.1" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="ExternalConfiguration.ExternalConfig.PropertyConfigurationControllerTest" time="0.129" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib"/>
@@ -10,6 +10,7 @@
     <property name="maven.multiModuleProjectDirectory" value="/Users/madandale/Documents/workspace-spring-tool-suite-4-4.2.0.RELEASE/ExternalConfig"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
+    <property name="java.rmi.server.randomIDs" value="true"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
@@ -27,7 +28,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/madandale/Documents/workspace-spring-tool-suite-4-4.2.0.RELEASE/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf8184703784356928985.tmp"/>
+    <property name="classworlds.conf" value="/Users/madandale/Documents/workspace-spring-tool-suite-4-4.2.0.RELEASE/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf1653869842631486952.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/madandale/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -45,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -63,6 +64,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="ExternalConfiguration.ExternalConfig.PropertyConfigurationControllerTest" name="testGetAllProperties" time="0.083"/>
-  <testcase classname="ExternalConfiguration.ExternalConfig.PropertyConfigurationControllerTest" name="testGetPropertyValue" time="0.017"/>
+  <testcase classname="ExternalConfiguration.ExternalConfig.PropertyConfigurationControllerTest" name="testGetAllProperties" time="0.1"/>
+  <testcase classname="ExternalConfiguration.ExternalConfig.PropertyConfigurationControllerTest" name="testGetPropertyValue" time="0.029"/>
 </testsuite>

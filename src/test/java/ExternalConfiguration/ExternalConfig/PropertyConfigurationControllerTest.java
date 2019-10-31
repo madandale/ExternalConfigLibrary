@@ -20,9 +20,9 @@ public class PropertyConfigurationControllerTest {
 	public void testGetPropertyValue() 
 	{
 		
-	String filePath = "file:///Users/madandale/Documents/Silenium/config/application.properties";
+	//String filePath = "file:///Users/madandale/Documents/Silenium/config/application.properties";
 		
-		PropertyConfigurationController config = new PropertyConfigurationController(filePath);
+		PropertyConfigurationController config = new PropertyConfigurationController(2);
 
 		String configValue = config.getPropertyValue("app.message",String.class);
 				
@@ -35,15 +35,15 @@ public class PropertyConfigurationControllerTest {
 	public void testGetAllProperties() 
 	{
 		
-	String filePath = "file:///Users/madandale/Documents/Silenium/config/application.properties";
+	//String filePath = "file:///Users/madandale/Documents/Silenium/config/application.properties";
 		
-		PropertyConfigurationController config = new PropertyConfigurationController(filePath);
+		PropertyConfigurationController config = new PropertyConfigurationController(2);
 
 		Map<String, Object> configValue = config.getAllProperties();
 		
-		System.out.println("configuration result" + configValue);
+		System.out.println("configuration result" + configValue.size());
 				
-		Assert.assertEquals(5, configValue.size() );
+		Assert.assertEquals(37, configValue.size() );
 		
 		
 	}
